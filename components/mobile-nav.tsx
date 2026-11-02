@@ -18,23 +18,6 @@ export function MobileNav() {
 
   return (
     <div className="md:hidden">
-      <div className="flex items-center justify-between gap-3 border-b border-border/60 bg-background/80 px-4 py-3 backdrop-blur-xl">
-        <Link href="/" className="text-xs font-semibold uppercase tracking-[0.28em] text-foreground">
-          ECHOSPREAD
-        </Link>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <button
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((value) => !value)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/60 dark:border-white/10 dark:bg-black/30"
-          >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
-        </div>
-      </div>
-
       {open && (
         <div className="border-b border-border/60 bg-background px-4 py-4">
           <nav className="flex flex-col gap-3" aria-label="Mobile navigation">
