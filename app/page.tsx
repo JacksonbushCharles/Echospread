@@ -7,6 +7,14 @@ import { SectionHeading } from "@/components/section-heading";
 import { featuredProjects, signalArticles, capabilityCards } from "@/lib/site-data";
 import GrowthShowcase from "@/components/sections/growth-showcase";
 
+import {
+  Search,
+  Magnet,
+  MousePointerClick,
+  RefreshCw,
+  Repeat2,
+} from "lucide-react";
+
 export default function Page() {
   return (
     <main>
@@ -90,26 +98,30 @@ export default function Page() {
 
           <div className="mt-14 grid gap-6 lg:grid-cols-7">
             {[
-              { name: "BRAND", subtle: true,},
-              { name: "WEB", subtle: false },
-              { name: "CONTENT", subtle: true },
-              { name: "SEARCH", subtle: false },
-              { name: "SOCIAL", subtle: true },
-              { name: "PEOPLE", subtle: false },
-              { name: "GROWTH", subtle: true },
+              { name: "BRAND", color: "#4285f4" },
+              { name: "WEB", color: "#fb8c00" },
+              { name: "CONTENT", color: "#34a853" },
+              { name: "SEARCH", color: "#4285f4" },
+              { name: "SOCIAL", color: "#fb8c00" },
+              { name: "PEOPLE", color: "#34a853" },
+              { name: "GROWTH", color: "#4285f4" },
             ].map((node, index) => (
               <div key={node.name} className="relative flex items-center justify-center">
                 <div
-                  className={`flex h-28 w-full items-center justify-center rounded-[1.75rem] border text-[0.62rem] font-medium uppercase tracking-[0.26em] ${
-                    node.subtle
-                      ? "border-border bg-background/80 text-foreground/70"
-                      : "border-foreground/10 bg-card text-foreground"
-                  }`}
+                  className="flex h-28 w-full items-center justify-center rounded-[1.75rem] border text-[0.62rem] font-medium uppercase tracking-[0.26em]"
+                  style={{
+                    backgroundColor: `color-mix(in srgb, ${node.color} 20%, var(--background))`,
+                    borderColor: `color-mix(in srgb, ${node.color} 32%, transparent)`,
+                    color: `color-mix(in srgb, ${node.color} 78%, var(--foreground))`,
+                  }}
                 >
                   {node.name}
                 </div>
                 {index < 6 && (
-                  <div className="absolute -bottom-5 left-1/2 h-5 w-px -translate-x-1/2 bg-border" />
+                  <div
+                    className="absolute -bottom-5 left-1/2 h-5 w-px -translate-x-1/2"
+                    style={{ backgroundColor: `color-mix(in srgb, ${node.color} 36%, transparent)` }}
+                  />
                 )}
               </div>
             ))}
@@ -147,7 +159,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-8 pt-20 pb-20">
+      {/* <section className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-8 pt-20 pb-20">
         <SectionHeading label="02 / BUILDS" title="Work that moves businesses forward." />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {featuredProjects.map((project) => (
@@ -173,7 +185,7 @@ export default function Page() {
             </Link>
           ))}
         </div>
-      </section>
+      </section> */}
 
       <section className="border-y border-border/80 bg-background/80 pt-20 pb-20">
         <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-8">
@@ -183,20 +195,55 @@ export default function Page() {
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
-            {[
-              ["DISCOVER", "SEO and search visibility."],
-              ["ATTRACT", "Content and advertising."],
-              ["CONVERT", "Web experiences and landing pages."],
-              ["RETAIN", "Automation and digital relationships."],
-              ["REPEAT", "Loop through the whole process."],
-            ].map(([heading, body]) => (
-              <div key={heading} className="rounded-[2rem] border border-border bg-card/60 p-5">
-                <div className="h-28 rounded-[1.3rem] border border-border bg-[radial-gradient(circle_at_center,_rgba(167,191,108,0.22),_transparent_50%)]" />
-                <h3 className="mt-6 text-xl tracking-[-0.04em] text-foreground">{heading}</h3>
-                <p className="mt-3 text-sm leading-7 text-foreground/65">{body}</p>
+          {[
+            {
+              heading: "DISCOVER",
+              body: "SEO and search visibility.",
+              icon: Search,
+            },
+            {
+              heading: "ATTRACT",
+              body: "Content and advertising.",
+              icon: Magnet,
+            },
+            {
+              heading: "CONVERT",
+              body: "Web experiences and landing pages.",
+              icon: MousePointerClick,
+            },
+            {
+              heading: "RETAIN",
+              body: "Automation and digital relationships.",
+              icon: RefreshCw,
+            },
+            {
+              heading: "REPEAT",
+              body: "Loop through the whole process.",
+              icon: Repeat2,
+            },
+          ].map(({ heading, body, icon: Icon }) => (
+            <div
+              key={heading}
+              className="rounded-[2rem] border border-border bg-card/60 p-5"
+            >
+              <div className="flex h-28 items-center justify-center rounded-[1.3rem] border border-border bg-[radial-gradient(circle_at_center,_rgba(167,191,108,0.22),_transparent_50%)]">
+                <Icon
+                  size={34}
+                  strokeWidth={1.4}
+                  className="text-primary"
+                />
               </div>
-            ))}
-          </div>
+
+              <h3 className="mt-6 text-xl tracking-[-0.04em] text-foreground">
+                {heading}
+              </h3>
+
+              <p className="mt-3 text-sm leading-7 text-foreground/65">
+                {body}
+              </p>
+            </div>
+          ))}
+        </div>
         </div>
       </section>
 

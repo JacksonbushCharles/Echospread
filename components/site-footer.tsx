@@ -43,6 +43,7 @@ export function SiteFooter() {
             <li>SEO</li>
             <li>AI</li>
             <li>Automation</li>
+            <li>Capabilities</li>
           </ul>
         </div>
 
